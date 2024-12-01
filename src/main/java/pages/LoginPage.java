@@ -1,5 +1,6 @@
 package pages;
 
+import dto.UserDto;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,25 +18,28 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//input[@name='email']")
     WebElement inputEmail;
 
-    public void typeLoginForm(String email, String password) {
-        inputEmail.sendKeys(email);
-
-    }
     @FindBy(xpath = "//input[@name='password']")
     WebElement inputPassword;
-
-    public void typePasswordForm(String email, String password){
-        inputPassword.sendKeys(password);
-    }
 
     @FindBy(xpath = "//button[@name='registration']")
     WebElement btnRegistration;
 
-    public void registration(String email, String password)
-    {
+    @FindBy(xpath = "//button[@name='login']")
+    WebElement btnLogin;
+
+    public void typeRegistrationForm(String email, String password) {
         inputEmail.sendKeys(email);
         inputPassword.sendKeys(password);
         btnRegistration.click();
-
+    }
+    public void typeLoginForm(String email, String password) {
+        inputEmail.sendKeys(email);
+        inputPassword.sendKeys(password);
+        btnLogin.click();
+    }
+    public void typeLoginForm(UserDto user) {
+        inputEmail.sendKeys(user.getEmail());
+        inputPassword.sendKeys(user.getPassword());
+        btnLogin.click();
     }
 }
